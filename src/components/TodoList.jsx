@@ -7,15 +7,12 @@ const TodoList = () => {
 
   return (
     <ul className="flex flex-col justify-center items-center my">
-      {wishItems.map((wishItem) =>
-        wishItem && wishItem.id ? (
-          <TodoItem
-            wishItem={wishItem}
-            key={wishItem.id}
-            // idItem={idItem}
-            // setIdItem={setIdItem}
-          />
-        ) : null
+      {wishItems.length === 0 ? (
+        <li className="text-pink-600">Santa's Inbox is empty!</li>
+      ) : (
+        wishItems.map((wishItem) => (
+          <TodoItem wishItem={wishItem} key={wishItem.id} />
+        ))
       )}
     </ul>
   );

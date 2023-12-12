@@ -3,13 +3,9 @@ import DeleteButton from "./buttons/DeleteButton";
 import { WishContext } from "../context/wishContext";
 
 const TodoItem = ({ wishItem }) => {
-  // Fallback, wenn wishItem oder wishItem.done nicht definiert ist
-  if (!wishItem || wishItem.done === undefined) {
-    console.error("TodoItem wurde ohne gültiges wishItem aufgerufen");
-    return null; // Oder eine Fehlermeldung rendern
-  }
   const { wishItems, setWishItems } = useContext(WishContext);
   const [isChecked, setIsChecked] = useState(wishItem.done);
+  const [bgColor, setBgColor] = useState("");
 
   console.log(wishItem);
   const handleCheckChange = () => {
@@ -22,7 +18,21 @@ const TodoItem = ({ wishItem }) => {
     setWishItems(updatedWishItems);
   };
 
-  useEffect(() => {}, [wishItem, isChecked]);
+  const showPriority = () => {
+    let bgColorClass = "";
+    if (wishItem.priority === "high") {
+      bgColorClass = "bg-red-600";
+    } else if (wishItem.priority === "low") {
+      bgColorClass = "bg-green-600";
+    } else {
+      bgColorClass = "bg-rose-600";
+    }
+    setBgColor(bgColorClass);
+  };
+
+  useEffect(() => {
+    showPriority();
+  }, [wishItem, isChecked]);
 
   return (
     <li className="flex gap-x-3 mb-4 justify-center items-center">
@@ -34,14 +44,15 @@ const TodoItem = ({ wishItem }) => {
         value={wishItem.wish}
         onChange={handleCheckChange}
       />
+
       <p
         className={`bg-rose-600 py-1 px-2 w-52 ${
           isChecked ? "line-through" : ""
-        }`}
+        } ${bgColor}`}
       >
         {wishItem.wish}
       </p>
-      <DeleteButton />
+      <DeleteButton wishItemId={wishItem.id} />
     </li>
   );
 };

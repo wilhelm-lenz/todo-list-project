@@ -3,7 +3,7 @@ import { WishContext } from "../../context/wishContext";
 import { v4 as uuidv4 } from "uuid";
 
 const AddButton = () => {
-  const { wishTerm, setWishTerm, wishItems, setWishItems } =
+  const { wishTerm, setWishTerm, priority, wishItems, setWishItems } =
     useContext(WishContext);
 
   const handleClick = () => {
@@ -12,16 +12,14 @@ const AddButton = () => {
     }
     const newWishItems = [
       ...wishItems,
-      { id: uuidv4(), wish: wishTerm, done: false },
+      { id: uuidv4(), wish: wishTerm, done: false, priority: priority },
     ];
     setWishItems(newWishItems);
     setWishTerm("");
   };
 
   useEffect(() => {
-    if (wishItems.length > 0) {
-      localStorage.setItem("wishItems", JSON.stringify(wishItems));
-    }
+    localStorage.setItem("wishItems", JSON.stringify(wishItems));
   }, [wishItems]);
 
   return (

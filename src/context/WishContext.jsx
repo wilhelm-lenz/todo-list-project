@@ -3,19 +3,19 @@ import { createContext, useState } from "react";
 const WishContext = createContext([]);
 
 const WishContextProvider = ({ children }) => {
-  const [wishItems, setWishItems] = useState([]);
   const [wishTerm, setWishTerm] = useState("");
   const [priority, setPriority] = useState("");
+  const [wishItems, setWishItems] = useState([]);
 
   return (
     <WishContext.Provider
       value={{
-        wishItems,
-        setWishItems,
         wishTerm,
         setWishTerm,
         priority,
         setPriority,
+        wishItems,
+        setWishItems,
       }}
     >
       {children}

@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { WishContext } from "../context/wishContext";
 
 const SelectMenus = () => {
@@ -6,20 +6,27 @@ const SelectMenus = () => {
 
   const handlePrioChange = (e) => {
     setPriority(e.target.value);
-    console.log(priority);
   };
 
+  useEffect(() => {}, [priority]);
+
   return (
-    <div>
-      <select
-        className="text-pink-600 rounded-md px-2 py-1"
-        onChange={handlePrioChange}
-      >
-        <option value="">Select Priority</option>
-        <option value="high">High</option>
-        <option value="low">Low</option>
-      </select>
-    </div>
+    <select
+      className={`${
+        priority === "high"
+          ? "bg-red-600"
+          : priority === "low"
+          ? "bg-green-600"
+          : "bg-rose-600"
+      } rounded-md px-2 py-1 outline-0`}
+      onChange={handlePrioChange}
+    >
+      <option value="">Select Priority</option>
+      <option value="high" className="text-green-600">
+        High
+      </option>
+      <option value="low">Low</option>
+    </select>
   );
 };
 
