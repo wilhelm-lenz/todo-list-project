@@ -1,5 +1,5 @@
 import { useContext, useEffect } from "react";
-import { WishContext } from "../context/wishContext";
+import { WishContext } from "../context/WishContext";
 
 const SelectMenus = () => {
   const { priority, setPriority } = useContext(WishContext);

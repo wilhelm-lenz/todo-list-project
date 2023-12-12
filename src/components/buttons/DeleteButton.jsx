@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { WishContext } from "../../context/wishContext";
+import { WishContext } from "../../context/WishContext";
 
 const DeleteButton = ({ wishItemId }) => {
   const { wishItems, setWishItems } = useContext(WishContext);
@@ -8,9 +8,10 @@ const DeleteButton = ({ wishItemId }) => {
     const afteDeleteItem = wishItems?.filter(
       (wishItem) => wishItemId !== wishItem.id
     );
+    localStorage.setItem("wishItems", JSON.stringify(afteDeleteItem));
     setWishItems(afteDeleteItem);
   };
-  console.log(wishItems);
+
   useEffect(() => {}, [wishItems]);
 
   return (

@@ -9,10 +9,10 @@ const InputTodo = () => {
   };
 
   useEffect(() => {}, [wishTerm]);
-  console.log(wishTerm);
+
   return (
     <input
-      className="rounded-md px-2 py-1 w-full text-rose-600"
+      className="rounded-md px-2 py-1 text-rose-600 w-full"
       type="text"
       placeholder="Type in your wish..."
       value={wishTerm}
