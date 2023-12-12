@@ -6,6 +6,7 @@ const WishContextProvider = ({ children }) => {
   const [wishTerm, setWishTerm] = useState("");
   const [priority, setPriority] = useState("");
   const [wishItems, setWishItems] = useState([]);
+  const [bgColor, setBgColor] = useState("");
 
   return (
     <WishContext.Provider
@@ -16,6 +17,8 @@ const WishContextProvider = ({ children }) => {
         setPriority,
         wishItems,
         setWishItems,
+        bgColor,
+        setBgColor,
       }}
     >
       {children}

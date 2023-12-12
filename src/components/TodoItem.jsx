@@ -18,21 +18,23 @@ const TodoItem = ({ wishItem }) => {
     setWishItems(updatedWishItems);
   };
 
-  const showPriority = () => {
-    let bgColorClass = "";
-    if (wishItem.priority === "high") {
-      bgColorClass = "bg-red-600";
-    } else if (wishItem.priority === "low") {
-      bgColorClass = "bg-green-600";
-    } else {
-      bgColorClass = "bg-rose-600";
-    }
-    setBgColor(bgColorClass);
-  };
+  // const showPriority = () => {
+  //   let bgColorClass = "";
+  //   if (wishItem.priority === "high") {
+  //     bgColorClass = "bg-red-600";
+  //   } else if (wishItem.priority === "low") {
+  //     bgColorClass = "bg-green-600";
+  //   } else {
+  //     bgColorClass = "bg-rose-600";
+  //   }
+  //   setBgColor(bgColorClass);
+  // };
 
   useEffect(() => {
-    showPriority();
-  }, [wishItem, isChecked]);
+    // showPriority();
+  }, [wishItems, isChecked, bgColor]);
+
+  console.log(wishItem);
 
   return (
     <li className="flex gap-x-3 mb-4 justify-center items-center sm:w-11/12 md:w-9/12 lg:w-100">
@@ -46,9 +48,13 @@ const TodoItem = ({ wishItem }) => {
       />
 
       <p
-        className={`bg-rose-600 py-1 px-2 w-52 ${
-          isChecked ? "line-through" : ""
-        } ${bgColor}`}
+        className={`py-1 px-2 w-52 ${isChecked ? "line-through" : ""} ${
+          wishItem.priority === "high"
+            ? "bg-red-600"
+            : wishItem.priority === "low"
+            ? "bg-green-600"
+            : "bg-rose-600"
+        }`}
       >
         {wishItem.wish}
       </p>
